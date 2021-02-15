@@ -23,4 +23,4 @@ _**Module**_                | _**Description**_
 _**Folder**_            | _**Description**_
 ------------------------|----------------------------------------
 < **JSON_files** >      | contains the files in .json format;
-< **CSV.files** >       | contains the files in .csv format.
+< **CSV_files** >       | contains the files in .csv format.
