@@ -28,3 +28,6 @@ _**Folder**_            | _**Description**_
 ## API KEY
 api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}
  < **APIKEY** > =  4c7fb4a66ea8116310c3af4e5c3f52fc
+
+## Web Site
+https://openweathermap.org/current
