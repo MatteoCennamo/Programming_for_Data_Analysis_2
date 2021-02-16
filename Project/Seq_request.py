@@ -10,38 +10,40 @@
 Sequantial vesion of the API request.
 '''
 
+import time
+import memory_profiler
 from Util import Util_functions as Uf
 
 
-# file da cui ho visto come fare l'url 
-https://mixedanalytics.com/knowledge-base/access-open-weather-api-data-in-google-sheets/
-https://mixedanalytics.com/knowledge-base/import-financial-modeling-prep-stock-data-google-sheets/
+# Memory before method call
+m1 = memory_profiler.memory_usage()
 
- 
- #tentativo 1
- 
-import requests
-import time
+# Cities and API-key definition
+CITIES = ['London', 'Tokyo']
+APIKEY = '23df90be877fed80721f131eafff5c6a'
 
-cities = ['London', 'Tokyo']
-
+# Create list of URLs
 urls = []
-for city in cities:
-    urls.append('api.openweathermap.org/data/2.5/weather'
-                + city +
-                'appid=23df90be877fed80721f131eafff5c6a')
-start = time.time()
-for url in urls:
-    try:
-        response = requests.get(url)
-        # If the response was successful, no Exception will be raised
-        response.raise_for_status()
-        print(response.text)
-    except Exception as exception:
-        print('An exception occurred: ' + str(exception))
-    else:
-        print('Success!')
+for city in CITIES:
+    urls.append(f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={APIKEY}')
 
-end = time.time()
-print('Took %.3f seconds' % (end - start))
-  
+# Initialize LIST of data
+responses = []
+
+# Time before process
+start = time.process_time()
+
+# Process the queries
+for url in urls:
+    responses += [Uf.handleRequest(url)]
+
+# Time after process
+end = time.process_time()
+
+# Memory after method call
+m2 = memory_profiler.memory_usage()
+
+# Compute memory usage and processing time
+time_diff = end - start
+mem_diff = m2[0] - m1[0]
+print("It took {:2.3} Secs and {:2.3} Mb to execute this method.".format(time_diff, mem_diff))
