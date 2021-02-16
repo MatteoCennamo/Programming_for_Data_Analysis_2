@@ -26,8 +26,12 @@ _**Folder**_            | _**Description**_
 < **CSV_files** >       | contains the files in .csv format.
 
 ## API KEY
-api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}
+http://api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}
  < **APIKEY** > =  4c7fb4a66ea8116310c3af4e5c3f52fc
 
 ## Web Site
 https://openweathermap.org/current
+
+### File da cui ho visto come fare l'url 
+https://mixedanalytics.com/knowledge-base/access-open-weather-api-data-in-google-sheets/
+https://mixedanalytics.com/knowledge-base/import-financial-modeling-prep-stock-data-google-sheets/
