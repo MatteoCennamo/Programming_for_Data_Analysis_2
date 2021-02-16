@@ -46,4 +46,4 @@ m2 = memory_profiler.memory_usage()
 # Compute memory usage and processing time
 time_diff = end - start
 mem_diff = m2[0] - m1[0]
-print("It took {:2.3} Secs and {:2.3} Mb to execute this method.".format(time_diff, mem_diff))
+print("It took {:2.3} Secs and {:2.3} Mb to execute this program.".format(time_diff, mem_diff))
