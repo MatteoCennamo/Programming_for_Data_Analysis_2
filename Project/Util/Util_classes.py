@@ -30,9 +30,7 @@ class RequestThread(threading.Thread):
     def writeFILE(self, path):
         '''Writes the data collected by the thread in a file identified by 
         'path'.'''
-        with open(path, 'wb') as f:
-            # Write the content of the data
-            f.write(self.data.content)
+        Uf.writeFILE(self.data, path)
     
     def __repr__(self):
         out = f'''Parent PID: {os.getppid()}\nProcess PID: {os.getpid()}\nAttributes:
