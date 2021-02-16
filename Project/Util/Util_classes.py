@@ -10,7 +10,7 @@
 This contains all the classes used in the project.
 '''
 
-import Util_functions as Uf
+from Util import Util_functions as Uf
 import threading
 import os
 
