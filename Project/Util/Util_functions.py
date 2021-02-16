@@ -31,4 +31,4 @@ def writeFILE(data, path):
     '''Writes the data collected by 'request.get()' in the file specified by 'path'.'''
     with open(path, 'wb') as f:
         # Write the content of the data
-        f.write(data.data.content)
+        f.write(data.content)
