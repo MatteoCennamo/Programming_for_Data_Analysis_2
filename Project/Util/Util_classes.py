@@ -28,10 +28,14 @@ class RequestThread(threading.Thread):
         '''Makes the URL request and stores the data in '.data' attribute.'''
         self.data = Uf.handleRequest(self.url, *args, **kargs)
     
-    def writeFILE(self):
+    def writeFILE(self, typ = None):
         '''Writes the data collected by the thread in a file identified by 
         'path'.'''
-        Uf.writeFILE(self.data, f'./Assets/JSON_files/{self.city.upper()}.json')
+        if typ == None:
+            typ = ''
+        else:
+            typ = '_{str(typ)}_'
+        Uf.writeFILE(self.data, f'./Assets/JSON_files/{self.city.upper()}{typ}.json')
     
     def __repr__(self):
         out = f'''Parent PID: {os.getppid()}\nProcess PID: {os.getpid()}\nAttributes:
