@@ -14,15 +14,13 @@ import time
 import memory_profiler
 from Util import Util_functions as Uf
 
+# Cities and API-key definition
+CITIES = ['Toronto','New York City','Rio de Janeiro','Buenos Aires','Nuuk','London', 
+          'Rome','Oslo','Cairo', 'Dubai','Moscow','Yakutsk','Cape Town','Nairobi', 
+          'Tehran','New Delhi','Sydney','Honolulu','Tokyo','Beijing']
+APIKEY = '23df90be877fed80721f131eafff5c6a'
 
 def main():
-    # Cities and API-key definition
-    CITIES = ['Toronto','New York City','Rio de Janeiro','Buenos Aires','Nuuk', 
-              'London','Rome',' Oslo','Cairo', 'Dubai','Moscow','Yakutsk', 
-              'Cape Town','Nairobi','Tehran','New Delhi','Sydney','Honolulu', 
-              'Tokyo','Beijing']
-    APIKEY = '23df90be877fed80721f131eafff5c6a'
-    
     # Create list of URLs
     urls = []
     for city in CITIES:
