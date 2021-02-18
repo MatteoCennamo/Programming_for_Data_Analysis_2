@@ -14,8 +14,8 @@ CITIES = ['Toronto','New York City','Rio de Janeiro','Buenos Aires','Nuuk',
           'London','Rome','Oslo','Cairo','Dubai','Moscow','Yakutsk','Cape Town', 
           'Nairobi','Tehran','New Delhi','Sydney','Honolulu', 'Tokyo','Beijing',]
 APIKEY = '23df90be877fed80721f131eafff5c6a'
-STARTDATE = int(datetime.timestamp(datetime.strptime('2000-01-01', '%Y-%m-%d')))
-ENDDATE = int(datetime.timestamp(datetime.strptime('2020-02-18', '%Y-%m-%d')))
+STARTDATE = int(datetime.timestamp(datetime.strptime('1995-01-01', '%Y-%m-%d')))
+ENDDATE = int(datetime.timestamp(datetime.strptime('2000-02-18', '%Y-%m-%d')))
 
 def main():
     # Create list of URLs and cities
