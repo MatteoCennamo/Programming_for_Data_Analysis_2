@@ -5,14 +5,17 @@
 # http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={API key}
  
 import time
+import pandas as pd
 import memory_profiler
 from Util import Util_classes as Uc
 
 
-# Cities and API-key definition   # DA DEFINIRE DIZIONARIO CON CITTA-LAT-LON
-#CITIES = ['Toronto','New York City','Rio de Janeiro','Buenos Aires','Nuuk', 
-          'London','Rome','Oslo','Cairo','Dubai','Moscow','Yakutsk','Cape Town', 
-          'Nairobi','Tehran','New Delhi','Sydney','Honolulu', 'Tokyo','Beijing',]
+# Load 'weather data'
+df = pd.read_csv('./Assets/CSV_files/weather.csv')
+# Create a DICTIONARY with: key = city; value = [lat, lon]
+dictLocation = {}
+for index, row in df.iterrows():
+    dictLocation[row['name']] = [row['lat'], row['lon']]
   
   
 APIKEY = '23df90be877fed80721f131eafff5c6a'
@@ -20,8 +23,8 @@ APIKEY = '23df90be877fed80721f131eafff5c6a'
 def main():
     # Create list of URLs and cities
     urls = []
-    for city in CITIES:
-        urls.append((f'http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={APIKEY}', city))
+    for city, loc in dictLocation.items():
+        urls.append((f'http://api.openweathermap.org/data/2.5/air_pollution?lat={loc[0]}&lon={loc[1]}&appid={APIKEY}', city))
       
     # Create threads and launch them
     threads = []
@@ -54,7 +57,3 @@ if __name__ == '__main__':
     mem_diff = m2[0] - m1[0]
     print("It took {:2.4} Secs and {:2.3} Mb to execute this program.".format(
             time_diff, mem_diff))
- 
- 
- 
- 
