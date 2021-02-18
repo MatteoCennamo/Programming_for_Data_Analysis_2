@@ -38,7 +38,7 @@ def main():
     
     # Write the data in .json files
     for thread in threads:
-        thread.writeFILE()
+        thread.writeFILE(typ = 'weather')
 
 if __name__ == '__main__':
     # Memory before program call
