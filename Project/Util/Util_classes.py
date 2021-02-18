@@ -34,7 +34,7 @@ class RequestThread(threading.Thread):
         if typ == None:
             typ = ''
         else:
-            typ = '_{str(typ)}_'
+            typ = '_{str(typ)}'
         Uf.writeFILE(self.data, f'./Assets/JSON_files/{self.city.upper()}{typ}.json')
     
     def __repr__(self):
