@@ -1,30 +1,28 @@
- # current data of Pollution 
- 
+# HISTORICAL WEATHER
 
- 
-# http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={API key}
- 
+# http://history.openweathermap.org/data/2.5/history/city?q={city ID},{country code}&type=hour&start={start}&end={end}&appid={API key}
+
+
 import time
-import pandas as pd
 import memory_profiler
 from Util import Util_classes as Uc
+from datetime import datetime
 
 
+# Cities and API-key definition
+CITIES = ['Toronto','New York City','Rio de Janeiro','Buenos Aires','Nuuk', 
+          'London','Rome','Oslo','Cairo','Dubai','Moscow','Yakutsk','Cape Town', 
+          'Nairobi','Tehran','New Delhi','Sydney','Honolulu','Tokyo','Beijing',]
 APIKEY = '23df90be877fed80721f131eafff5c6a'
+STARTDATE = int(datetime.timestamp(datetime.strptime('2021-01-01', '%Y-%m-%d')))
+ENDDATE = int(datetime.timestamp(datetime.strptime('2021-02-18', '%Y-%m-%d')))
 
 def main():
-    # Load 'weather data'
-    df = pd.read_csv('./Assets/CSV_files/weather.csv')
-    # Create a DICTIONARY with: key = city; value = [lat, lon]
-    dictLocation = {}
-    for index, row in df.iterrows():
-        dictLocation[row['name']] = [row['lat'], row['lon']]
-    
     # Create list of URLs and cities
     urls = []
-    for city, loc in dictLocation.items():
-        urls.append((f'http://api.openweathermap.org/data/2.5/air_pollution?lat={loc[0]}&lon={loc[1]}&appid={APIKEY}', city))
-    
+    for city in CITIES:
+        urls.append((f'http://history.openweathermap.org/data/2.5/history/city?' + 
+                     f'q={city}&type=hour&start={STARTDATE}&end={ENDDATE}&appid={APIKEY}', city))
     # Create threads and launch them
     threads = []
     for url in urls:
@@ -37,7 +35,7 @@ def main():
     
     # Write the data in .json files
     for thread in threads:
-        thread.writeFILE(typ = 'pollution')
+        thread.writeFILE(typ = 'hist_weather')
 
 if __name__ == '__main__':
     # Memory before program call

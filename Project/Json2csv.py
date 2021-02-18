@@ -14,11 +14,11 @@ in < Assets/CSV_files > folder.
 import pandas as pd
 from Util import Util_functions as Uf
 
-CITIES = ['Toronto','New York City','Rio de Janeiro','Buenos Aires','Nuuk','London',
+CITIES = ['Toronto','New York','Rio de Janeiro','Buenos Aires','Nuuk','London',
           'Rome','Oslo','Cairo','Dubai','Moscow','Yakutsk','Cape Town','Nairobi',
           'Tehran','New Delhi','Sydney','Honolulu', 'Tokyo','Beijing']
 
-for i in ['weather', 'hist_weather', 'pollution']:
+for i in ['weather', 'pollution']: # , 'hist_weather'
     # Create an empty dataframe for weather conditions
     df = pd.DataFrame()
     for city in CITIES:
