@@ -42,3 +42,35 @@ temp.plot.bar()
 plt.xlabel('City', fontdict = {'size': 12})
 plt.ylabel('Temperature [°C]', fontdict = {'size': 12})
 plt.show()
+
+df['aqi'].plot.bar()
+
+#Air Quality Index. Possible values: 1, 2, 3, 4, 5. Where 1 = Good, 2 = Fair, 3 = Moderate, 4 = Poor, 5 = Very Poor.
+
+
+# correlation 
+plt.scatter(df['humidity'], df['speed'])
+scipy.stats.pearsonr(df['humidity'], df['speed'])
+
+plt.scatter(df['temp'], df['speed'])
+scipy.stats.pearsonr(df['temp'], df['speed'])
+
+plt.scatter(df['visibility'], df['speed'])
+scipy.stats.pearsonr(df['visibility'], df['speed'])
+
+plt.scatter(df['feels_like'], df['humidity'])
+scipy.stats.pearsonr(df['feels_like'], df['humidity'])
+
+# due emisferi
+emisf_bor = df.loc[['Cape Town','Rio de Janeiro','Buenos Aires','Nairobi','Sydney']]
+emisf_bor['temp'].mean()   # 25 gradi
+
+emisf_aust = df.loc[['Toronto','New York City','Nuuk','London','Rome',' Oslo','Cairo',
+          'Dubai','Moscow','Yakutsk','Tehran','New Delhi','Honolulu', 'Tokyo','Beijing']]
+
+emisf_aust['temp'].mean()  # 3 gradi
+
+
+emisf_aust['temp'].plot.bar()
+
+emisf_bor['temp'].plot.bar()
