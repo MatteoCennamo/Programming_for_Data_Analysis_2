@@ -12,19 +12,23 @@ data into Pandas.DataFrame object and writes the data in .csv
 in < Assets/CSV_files > folder.
 '''
 import pandas as pd
-import json
+from Util import Util_functions as Uf
 
-CITIES = ['Toronto','New York City','Rio de Janeiro','Buenos Aires','Nuuk','London','Rome',' Oslo','Cairo',
-          'Dubai','Moscow','Yakutsk','Cape Town','Nairobi','Tehran','New Delhi','Sydney','Honolulu', 'Tokyo','Beijing',]
+CITIES = ['Toronto','New York City','Rio de Janeiro','Buenos Aires','Nuuk','London',
+          'Rome','Oslo','Cairo','Dubai','Moscow','Yakutsk','Cape Town','Nairobi',
+          'Tehran','New Delhi','Sydney','Honolulu', 'Tokyo','Beijing']
 
-res= []
-for city in CITIES:
-        data = json.load(open("C:\\Users\\moren\\" + city + ".json"))
-        for elm in data:
-            res.append([city])
-
-    
-csv_file_path = 'Cities.csv'
-fin_res = pd.DataFrame(res)
-fin_res.columns= ['name','coord','weather','base','main','wind']   # !!
-fin_res.to_csv(csv_file_path,index = False)
+for i in ['weather', 'pollution']:
+    # Create an empty dataframe for weather conditions
+    df = pd.DataFrame()
+    for city in CITIES:
+        # Load the data
+        d = Uf.json2dict(f'./Assets/JSON_files/{city.upper()}_{i}.json')
+        # Flatten the dictionary
+        d = Uf.flattenJson(d)
+        for k, v in d.items():
+            d[k] = [v]
+        # Add data to dataframe
+        df = df.append(pd.DataFrame(d))
+    df.reset_index()
+    df.to_csv('./Assets/CSV_files/{i}.csv', index = False)
