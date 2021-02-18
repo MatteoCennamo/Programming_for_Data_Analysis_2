@@ -39,8 +39,8 @@ class Url_Thread(threading.Thread):
             print ( 'Success!' )
 
 
-CITIES = ['Toronto','New York City','Rio de Janeiro','Buenos Aires','Nuuk','London','Rome',' Oslo','Cairo',
-          'Dubai','Moscow','Yakutsk','Cape Town','Nairobi','Tehran','New Delhi','Sydney','Honolulu', 'Tokyo','Beijing',]
+CITIES = ['Toronto','New York City','Rio de Janeiro','Buenos Aires','Nuuk','London','Rome','Oslo','Cairo',
+          'Dubai','Moscow','Yakutsk','Cape Town','Nairobi','Tehran','New Delhi','Sydney','Honolulu', 'Tokyo','Beijing']
 
 APIKEY = '23df90be877fed80721f131eafff5c6a'
 
