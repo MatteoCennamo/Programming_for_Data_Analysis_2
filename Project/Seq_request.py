@@ -19,7 +19,8 @@ from Util import Util_functions as Uf
 m1 = memory_profiler.memory_usage()
 
 # Cities and API-key definition
-CITIES = ['London', 'Tokyo']
+CITIES = ['Toronto','New York City','Rio de Janeiro','Buenos Aires','Nuuk','London','Rome',' Oslo','Cairo',
+          'Dubai','Moscow','Yakutsk','Cape Town','Nairobi','Tehran','New Delhi','Sydney','Honolulu', 'Tokyo','Beijing',]
 APIKEY = '23df90be877fed80721f131eafff5c6a'
 
 # Create list of URLs
