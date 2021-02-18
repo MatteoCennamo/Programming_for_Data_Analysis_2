@@ -10,17 +10,16 @@ import memory_profiler
 from Util import Util_classes as Uc
 
 
-# Load 'weather data'
-df = pd.read_csv('./Assets/CSV_files/weather.csv')
-# Create a DICTIONARY with: key = city; value = [lat, lon]
-dictLocation = {}
-for index, row in df.iterrows():
-    dictLocation[row['name']] = [row['lat'], row['lon']]
-  
-  
 APIKEY = '23df90be877fed80721f131eafff5c6a'
 
 def main():
+    # Load 'weather data'
+    df = pd.read_csv('./Assets/CSV_files/weather.csv')
+    # Create a DICTIONARY with: key = city; value = [lat, lon]
+    dictLocation = {}
+    for index, row in df.iterrows():
+        dictLocation[row['name']] = [row['lat'], row['lon']]
+    
     # Create list of URLs and cities
     urls = []
     for city, loc in dictLocation.items():
