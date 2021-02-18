@@ -18,7 +18,7 @@ CITIES = ['Toronto','New York City','Rio de Janeiro','Buenos Aires','Nuuk','Lond
           'Rome','Oslo','Cairo','Dubai','Moscow','Yakutsk','Cape Town','Nairobi',
           'Tehran','New Delhi','Sydney','Honolulu', 'Tokyo','Beijing']
 
-for i in ['weather', 'hist_weather', 'day_pollution']:
+for i in ['weather', 'hist_weather', 'pollution']:
     # Create an empty dataframe for weather conditions
     df = pd.DataFrame()
     for city in CITIES:
