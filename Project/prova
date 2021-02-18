@@ -1,0 +1,42 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import statsmodels.formula.api as smf
+
+df_weather = pd.read_csv('C:\\Users\\moren\\OneDrive\\Desktop/weather.csv')
+df_pollution = pd.read_csv('C:\\Users\\moren\\OneDrive\\Desktop/pollution.csv')
+
+# Merge the two dataframes
+df = pd.merge(df_weather, df_pollution, how = 'outer', on = ['lat', 'lon'])
+
+df.insert(0, "City",['Toronto','New York City','Rio de Janeiro','Buenos Aires','Nuuk','London','Rome',' Oslo','Cairo',
+          'Dubai','Moscow','Yakutsk','Cape Town','Nairobi','Tehran','New Delhi','Sydney','Honolulu', 'Tokyo','Beijing',], True) 
+          
+          
+          
+def kelvin_to_celsius(kelvin):
+    """Convert kelvin to Celsius
+    
+    Return Celsius conversion of input"""
+    temp_celsius = (kelvin - 273.15)
+    return temp_celsius
+
+
+
+print(df.columns.tolist())
+
+df['temp'] = kelvin_to_celsius(df['temp'])
+df['feels_like']= kelvin_to_celsius(df['feels_like'])
+df['temp_min']= kelvin_to_celsius(df['temp_min'])
+df['temp_max']= kelvin_to_celsius(df['temp_max'])
+df["temp"]= kelvin_to_celsius(df["temp"])
+
+df.set_index('City',inplace= True)
+
+temp= pd.DataFrame(df[['temp', 'feels_like', 'temp_min', 'temp_max']])
+
+plt.figure(figsize=(20,8))
+temp.plot.bar()
+
+df['humidity'].plot.area()
+
