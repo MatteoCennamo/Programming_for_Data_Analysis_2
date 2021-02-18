@@ -12,14 +12,18 @@ from Util import Util_classes as Uc
 CITIES = ['Toronto','New York City','Rio de Janeiro','Buenos Aires','Nuuk', 
           'London','Rome','Oslo','Cairo','Dubai','Moscow','Yakutsk','Cape Town', 
           'Nairobi','Tehran','New Delhi','Sydney','Honolulu', 'Tokyo','Beijing',]
+ 
 APIKEY = '23df90be877fed80721f131eafff5c6a'
 
 def main():
     # Create list of URLs and cities
     urls = []
     for city in CITIES:
-        urls.append((f'http://history.openweathermap.org/data/2.5/history/city?q={city ID}&type=hour&start={start}&end={end}&appid={API key}
+        urls.append((f'http://history.openweathermap.org/data/2.5/history/city?q={city }&type=hour&start={946681200}&end={1613646040}&appid={APIKEY}
 ', city))
+
+# start= 01/01/2000   end= 18/02/2021
+
     # Create threads and launch them
     threads = []
     for url in urls:
@@ -32,7 +36,7 @@ def main():
     
     # Write the data in .json files
     for thread in threads:
-        thread.writeFILE(typ = 'weather')
+        thread.writeFILE(typ = 'weather_hist')
 
 if __name__ == '__main__':
     # Memory before program call
