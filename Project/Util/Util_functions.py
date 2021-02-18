@@ -12,6 +12,7 @@ This contains all the functions used in the project.
 
 import requests
 import os
+import json
 
 
 def handleRequest(url, *args, **kargs):
@@ -32,3 +33,23 @@ def writeFILE(data, path):
     with open(path, 'wb') as f:
         # Write the content of the data
         f.write(data.content)
+
+def json2dict(path):
+    '''Reads a '.json' file (provided in 'path'), writing the data in a 
+    Pandas.DataFrame.'''
+    with open(path, 'r') as f:
+        data = json.load(f)
+    return data
+
+def flattenJson(d):
+    '''Flatten a nested '.json' file into a dictionary of key-value pairs.'''
+    out = {}
+    for k, v in d.items():
+        if isinstance(v, dict):
+            app = flattenJson(v)
+        elif isinstance(v, list) and isinstance(v[0], dict):
+            app = flattenJson(v[0])
+        else:
+            app = {k: v}
+        out.update(app)
+    return out
