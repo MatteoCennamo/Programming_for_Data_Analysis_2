@@ -12,6 +12,7 @@ data analysis of weather and pollution among cities.
 '''
 import pandas as pd
 from matplotlib import pyplot as plt
+import scipy
 
 
 # Load the dataframes

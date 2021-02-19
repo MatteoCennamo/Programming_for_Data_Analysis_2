@@ -25,7 +25,8 @@ def main():
     # Create list of URLs and cities
     urls = []
     for city in CITIES:
-        urls.append((f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={APIKEY}', city))
+        urls.append((f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={APIKEY}', 
+                     city))
     # Create threads and launch them
     threads = []
     for url in urls:
