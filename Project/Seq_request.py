@@ -32,17 +32,22 @@ def main():
     # Process the queries
     for url in urls:
         responses += [Uf.handleRequest(url)]
+    
+    idx = 0
+    for city in CITIES:
+        Uf.writeFILE(responses[idx], f'./Assets/JSON_files/{city.upper()}_weather_seq.json')
+        idx += 1
 
 if __name__ == '__main__':
     # Memory before program call
     m1 = memory_profiler.memory_usage()
     # Time before process
-    start = time.process_time()
+    start = time.time()
     
     main()
     
     # Time after process
-    end = time.process_time()
+    end = time.time()
     # Memory after program call
     m2 = memory_profiler.memory_usage()
     

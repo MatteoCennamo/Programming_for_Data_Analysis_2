@@ -1,32 +1,28 @@
-'''
-------------- PROGRAMMING FOR DATA ANALYSIS 2 -------------
+# HISTORICAL WEATHER
 
- +-------------------+
- |  Matteo  Cennamo  |
- |  Matilde Moreni   |
- +-------------------+
+# http://history.openweathermap.org/data/2.5/history/city?q={city ID},{country code}&type=hour&start={start}&end={end}&appid={API key}
 
 
-Multi-Threads version of the API request. It downloads the data
-into < Assets/JSON_files > folder in .json format.
-'''
 import time
 import memory_profiler
 from Util import Util_classes as Uc
+from datetime import datetime
 
 
 # Cities and API-key definition
-CITIES = ['Toronto','New York','Rio de Janeiro','Buenos Aires','Nuuk', 
+CITIES = ['Toronto','New York City','Rio de Janeiro','Buenos Aires','Nuuk', 
           'London','Rome','Oslo','Cairo','Dubai','Moscow','Yakutsk','Cape Town', 
-          'Nairobi','Tehran','New Delhi','Sydney','Honolulu', 'Tokyo','Beijing']
+          'Nairobi','Tehran','New Delhi','Sydney','Honolulu','Tokyo','Beijing',]
 APIKEY = '23df90be877fed80721f131eafff5c6a'
+STARTDATE = int(datetime.timestamp(datetime.strptime('2021-01-01', '%Y-%m-%d')))
+ENDDATE = int(datetime.timestamp(datetime.strptime('2021-02-18', '%Y-%m-%d')))
 
 def main():
     # Create list of URLs and cities
     urls = []
     for city in CITIES:
-        urls.append((f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={APIKEY}', 
-                     city))
+        urls.append((f'http://history.openweathermap.org/data/2.5/history/city?' + 
+                     f'q={city}&type=hour&start={STARTDATE}&end={ENDDATE}&appid={APIKEY}', city))
     # Create threads and launch them
     threads = []
     for url in urls:
@@ -39,18 +35,18 @@ def main():
     
     # Write the data in .json files
     for thread in threads:
-        thread.writeFILE(typ = 'weather')
+        thread.writeFILE(typ = 'hist_weather')
 
 if __name__ == '__main__':
     # Memory before program call
     m1 = memory_profiler.memory_usage()
     # Time before process
-    start = time.time()
+    start = time.process_time()
     
     main()
     
     # Time after process
-    end = time.time()
+    end = time.process_time()
     # Memory after program call
     m2 = memory_profiler.memory_usage()
     # Compute memory usage and processing time

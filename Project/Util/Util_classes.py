@@ -24,9 +24,9 @@ class RequestThread(threading.Thread):
         self.url = url       # URL with contains the content of the request
         self.city = city     # contains the name of the city
     
-    def run(self, *args, **kargs):
+    def run(self):
         '''Makes the URL request and stores the data in '.data' attribute.'''
-        self.data = Uf.handleRequest(self.url, *args, **kargs)
+        self.data = Uf.handleRequest(self.url)
     
     def writeFILE(self, typ = None):
         '''Writes the data collected by the thread in a file identified by 
@@ -40,5 +40,7 @@ class RequestThread(threading.Thread):
     def __repr__(self):
         out = f'''Parent PID: {os.getppid()}\nProcess PID: {os.getpid()}\nAttributes:
     -> .url: {self.url} ({type(self.url)})
-    -> .data: {self.data} ({type(self.data)})'''
+    -> .data: {self.data} ({type(self.data)})
+    -> .city: {self.city} ({type(self.city)}) 
+    -> .type: {self.type}'''
         return out
