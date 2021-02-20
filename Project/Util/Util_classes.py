@@ -41,6 +41,5 @@ class RequestThread(threading.Thread):
         out = f'''Parent PID: {os.getppid()}\nProcess PID: {os.getpid()}\nAttributes:
     -> .url: {self.url} ({type(self.url)})
     -> .data: {self.data} ({type(self.data)})
-    -> .city: {self.city} ({type(self.city)}) 
-    -> .type: {self.type}'''
+    -> .city: {self.city} ({type(self.city)})'''
         return out
