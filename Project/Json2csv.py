@@ -11,8 +11,10 @@ This reads .json files from < Assets > directory, converts the
 data into Pandas.DataFrame object and writes the data in .csv
 in < Assets/CSV_files > folder.
 '''
+from os import path
 import pandas as pd
 from Util import Util_functions as Uf
+
 
 CITIES = ['Toronto','New York','Rio de Janeiro','Buenos Aires','Nuuk','London',
           'Rome','Oslo','Cairo','Dubai','Moscow','Yakutsk','Cape Town','Nairobi',
@@ -22,8 +24,14 @@ for i in ['weather', 'pollution']: # , 'hist_weather'
     # Create an empty dataframe for weather conditions
     df = pd.DataFrame()
     for city in CITIES:
+        # Create the path of the file
+        p = f'./Assets/JSON_files/{city.upper()}_{i}.json'
         # Load the data
-        d = Uf.json2dict(f'./Assets/JSON_files/{city.upper()}_{i}.json')
+        if path.isfile(p):
+            d = Uf.json2dict(p)
+        else:
+            print(f'{p} is NOT an existing file.')
+            continue
         # Flatten the dictionary
         d = Uf.flattenJson(d)
         for k, v in d.items():
